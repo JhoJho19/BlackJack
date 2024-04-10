@@ -3840,12 +3840,37 @@ MonoBehaviour:
   - {fileID: -454426633, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
   - {fileID: 550489525, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
   diamonds:
-  - {fileID: 0}
-  crosses: []
-  cart1: {fileID: 0}
-  cart2: {fileID: 0}
-  cart3: {fileID: 0}
-  cart4: {fileID: 0}
+  - {fileID: 388574304, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -433004726, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 1845052772, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -239972251, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 1373834073, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -1998224243, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 1914206823, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 893992573, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -1870338889, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -1149019548, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -2078646852, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -60029813, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -963078187, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  crosses:
+  - {fileID: -1106265283, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 474407805, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 1799730807, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -1358355909, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 1978023988, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -418558959, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 637922496, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 627115162, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -393714899, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 475417847, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 726582036, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: 934965926, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  - {fileID: -2118532416, guid: 00b8fd0462690864095d88a0c4bbc4d3, type: 3}
+  cart1: {fileID: 1407993354}
+  cart2: {fileID: 1224931793}
+  cart3: {fileID: 1443762126}
+  cart4: {fileID: 390289579}
 --- !u!1 &2049888146
 GameObject:
   m_ObjectHideFlags: 0
