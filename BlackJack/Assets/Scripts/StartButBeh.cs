@@ -1,9 +1,12 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartButBeh : MonoBehaviour
+public class BJSystem : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI balanceText;
+    [SerializeField] TextMeshProUGUI totalWinText;
     [SerializeField] Image buttonImage;
     [SerializeField] Sprite buttonGreen;
     [SerializeField] Sprite buttonGrey;
@@ -18,11 +21,54 @@ public class StartButBeh : MonoBehaviour
     [SerializeField] Image cart3;
     [SerializeField] Image cart4;
 
+    [SerializeField] BetBeh betBeh;
+
     public int scoresPlayer { get; private set; }
     public int scoresDealer { get; private set; }
+    public float balance { get; private set; }
+
+    private void Start()
+    {
+        LoadBalance();
+    }
+
+    private void RefreshBalance()
+    {
+        balanceText.text = balance.ToString();
+    }
+
+    private void CoinsToLoser()
+    {
+        if (balance == 0)
+            balance += 100;
+        RefreshBalance();
+    }
+
+    public void balanceMinusBet()
+    {
+        balance -= betBeh.betAmount;
+        RefreshBalance();
+        CoinsToLoser();
+        totalWinText.text = 0.ToString();
+    }
+
+    public void balanceSimpleWin()
+    {
+        balance += betBeh.betAmount;
+        totalWinText.text = betBeh.betAmount.ToString();
+        RefreshBalance();
+    }
+
+    public void balanceBJWin()
+    {
+        balance += betBeh.betAmount * 1.5f;
+        totalWinText.text = (betBeh.betAmount * 1.5f).ToString();
+        RefreshBalance();
+    }
 
     public void StartButtonPushed()
     {
+        if(betBeh.isBetReady)
         StartCoroutine(GameCor());
     }
 
@@ -42,17 +88,15 @@ public class StartButBeh : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         scoresPlayer = 0;
         scoresDealer = 0;
+        buttonImage.sprite = buttonGrey;
+        betBeh.isBetReady = false;
+        betBeh.AllButtonPurple();
     }
 
     private int WhichCard(Image cart, int scores)
     {
-        Debug.Log("Вызов WichCard");
-
         int suitIndex = Random.Range(0, 4);
         int cartIndex = Random.Range(0, 13);
-
-        Debug.Log("индекс масти" + suitIndex);
-        Debug.Log("индекс карты" + cartIndex);
 
         if (suitIndex == 0) { cart.sprite = spades[cartIndex]; }
         else if (suitIndex == 1) { cart.sprite = hearts[cartIndex]; }
@@ -88,18 +132,22 @@ public class StartButBeh : MonoBehaviour
         if (scoresPlayer > 21)
         {
             Debug.Log("Игрок проиграл, у него перебор");
+            balanceMinusBet();
         }
-        else if (scoresDealer > 21 && scoresPlayer <= 21)
+        else if (scoresDealer > 21 && scoresPlayer < 21)
         {
             Debug.Log("Дилер проиграл, у него перебор");
+            balanceSimpleWin();
         }
         else if (scoresPlayer == 21 && scoresDealer != 21)
         {
             Debug.Log("Игрок победил, у него блэкджек");
+            balanceBJWin();
         }
         else if (scoresDealer == 21 && scoresPlayer != 21)
         {
             Debug.Log("Дилер победил, у него блэкджек");
+            balanceMinusBet();
         }
         else if (scoresDealer == 21 && scoresPlayer == 21)
         {
@@ -108,14 +156,46 @@ public class StartButBeh : MonoBehaviour
         else if (scoresPlayer > scoresDealer)
         {
             Debug.Log("Игрок победил, у него больше очков");
+            balanceSimpleWin();
         }
         else if (scoresDealer > scoresPlayer)
         {
             Debug.Log("Дилер победил, у него больше очков");
+            balanceMinusBet();
         }
         else
         {
             Debug.Log("Ничья, у обоих одинаковое количество очков");
         }
+    }
+
+    private void SaveBalance()
+    {
+        PlayerPrefs.SetFloat("Balance", balance);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadBalance()
+    {
+        if (PlayerPrefs.HasKey("Balance"))
+        {
+            balance = PlayerPrefs.GetFloat("Balance");
+            RefreshBalance();
+        }
+        else
+        {
+            balance = 5000;
+            RefreshBalance();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        SaveBalance();
+    }
+
+    private void OnDisable()
+    {
+        SaveBalance();
     }
 }
