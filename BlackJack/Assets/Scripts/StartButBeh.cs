@@ -7,6 +7,9 @@ public class BJSystem : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI balanceText;
     [SerializeField] TextMeshProUGUI totalWinText;
+    [SerializeField] TextMeshProUGUI textDealerWinCounter;
+    [SerializeField] TextMeshProUGUI textPlayerWinCounter;
+
     [SerializeField] Image buttonImage;
     [SerializeField] Sprite buttonGreen;
     [SerializeField] Sprite buttonGrey;
@@ -35,6 +38,8 @@ public class BJSystem : MonoBehaviour
     private void RefreshBalance()
     {
         balanceText.text = balance.ToString();
+        textDealerWinCounter.text = scoresDealer.ToString();
+        textPlayerWinCounter.text = scoresPlayer.ToString();
     }
 
     private void CoinsToLoser()
@@ -62,9 +67,12 @@ public class BJSystem : MonoBehaviour
     public void balanceBJWin()
     {
         balance += betBeh.betAmount * 1.5f;
+        int roundedBalance = Mathf.CeilToInt(balance);
+        balance = roundedBalance;
         totalWinText.text = (betBeh.betAmount * 1.5f).ToString();
         RefreshBalance();
     }
+
 
     public void StartButtonPushed()
     {
