@@ -30,7 +30,7 @@ public class BJSystem : MonoBehaviour
     public int scoresDealer { get; private set; }
     public float balance { get; private set; }
 
-    private void Start()
+    private void OnEnable()
     {
         LoadBalance();
     }
